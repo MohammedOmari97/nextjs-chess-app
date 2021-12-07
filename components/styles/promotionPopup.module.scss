@@ -1,0 +1,31 @@
+.promotionButton {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  border-radius: 8px;
+  background: #fff;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: #e3e3e377;
+  }
+
+  &:active {
+    background: #e3e3e3dd;
+  }
+
+  @media screen and (max-width: 470px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media screen and (orientation: landscape) and (max-width: 850px) {
+    width: 35px;
+    height: 35px;
+  }
+}

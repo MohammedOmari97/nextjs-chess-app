@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  row-gap: 0;
+  column-gap: 0;
+  width: 500px;
+  height: 500px;
+  resize: both;
+  border-radius: 3px;
+  position: relative;
+}
+
+.playerSide {
+  .playerImage {
+    border-radius: 50%;
+    border: 1px solid #e3e3e388 !important;
+    width: 60px;
+    height: 60px;
+
+    // @media screen and (min-width: ) {
+    // }
+  }
+}
