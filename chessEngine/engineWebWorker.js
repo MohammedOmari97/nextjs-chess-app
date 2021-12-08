@@ -3,8 +3,8 @@ import {engine} from "./engine"
 const difficulties = {
   beginner: 1,
   intermediate: 5,
-  advanced: 10,
-  expert: 12,
+  advanced: 8,
+  expert: 10,
 }
 
 let difficulty = difficulties.beginner

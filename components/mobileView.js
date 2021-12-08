@@ -48,6 +48,7 @@ function MoveHistoryButton({move, orientation, ...props}) {
             payload: {move: move.historyStep},
           })
         }}
+        {...props}
       >
         {move.moveCode}
       </Button>
@@ -74,9 +75,29 @@ function MoveHistoryButton({move, orientation, ...props}) {
 }
 
 function GameMovesPortrait({isVisible}) {
-  const {moves, stepsInHistory} = useSelector((state) => state.game)
+  const {moves, stepsInHistory, isGameOver, winner} = useSelector(
+    (state) => state.game
+  )
+  const {computerColor, userColor} = useSelector((state) => state.sides)
   const dispatch = useDispatch()
   const movesListRef = useRef()
+
+  let result
+  if (winner === "computer") {
+    if (computerColor === "white") {
+      result = "1 - 0"
+    } else {
+      result = "0 - 1"
+    }
+  } else if (winner === "user") {
+    if (userColor === "white") {
+      result = "1 - 0"
+    } else {
+      result = "0 - 1"
+    }
+  } else if (isGameOver && !winner) {
+    result = "1/2 - 1/2"
+  }
 
   return (
     <Flex
@@ -89,14 +110,47 @@ function GameMovesPortrait({isVisible}) {
       ref={movesListRef}
     >
       {moves.map((move, i) => {
-        return <MoveHistoryButton key={i} move={move} />
+        return <MoveHistoryButton key={i} move={move} mr="3px" />
       })}
+      {result && (
+        <Box
+          w="20px"
+          borderRadius="md"
+          p="10px"
+          textAlign="center"
+          shadow="base"
+          border="1px solid #e3e3e355"
+          display="flex"
+          alignItems="center"
+          minWidth="fit-content"
+        >
+          {result}
+        </Box>
+      )}
     </Flex>
   )
 }
 
 function GameMovesLandscape() {
-  const {moves} = useSelector((state) => state.game)
+  const {moves, isGameOver, winner} = useSelector((state) => state.game)
+  const {computerColor, userColor} = useSelector((state) => state.sides)
+
+  let result
+  if (winner === "computer") {
+    if (computerColor === "white") {
+      result = "1 - 0"
+    } else {
+      result = "0 - 1"
+    }
+  } else if (winner === "user") {
+    if (userColor === "white") {
+      result = "1 - 0"
+    } else {
+      result = "0 - 1"
+    }
+  } else if (isGameOver && !winner) {
+    result = "1/2 - 1/2"
+  }
 
   return (
     <Wrap
@@ -111,6 +165,18 @@ function GameMovesLandscape() {
       {moves.map((move, i) => {
         return <MoveHistoryButton key={i} move={move} orientation="landscape" />
       })}
+      {result && (
+        <Box
+          w="100%"
+          borderRadius="md"
+          p="10px"
+          textAlign="center"
+          shadow="base"
+          border="1px solid #e3e3e355"
+        >
+          {result}
+        </Box>
+      )}
     </Wrap>
   )
 }

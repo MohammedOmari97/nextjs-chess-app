@@ -172,7 +172,9 @@ function PlayersInfo({children, isVisible, ...rest}) {
             </VStack>
           </HStack>
         )}
-        <Flex width="100%">{capturedWhitePieces}</Flex>
+        <Flex width="100%" flexWrap="wrap">
+          {capturedWhitePieces}
+        </Flex>
       </HStack>
       {children}
       <Flex justifyContent="space-between" w="100%">
@@ -242,7 +244,9 @@ function PlayersInfo({children, isVisible, ...rest}) {
             </VStack>
           </HStack>
         )}
-        <Flex width="100%">{capturedBlackPieces}</Flex>
+        <Flex width="100%" flexWrap="wrap">
+          {capturedBlackPieces}
+        </Flex>
       </Flex>
     </VStack>
   )
