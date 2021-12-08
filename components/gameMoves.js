@@ -212,13 +212,6 @@ function GameMoves() {
                     type: "resignation",
                   },
                 })
-                // dispatch({type: "reset-score"})
-                // setTimeout(() => {
-                //   dispatch({
-                //     type: "set-show-animation",
-                //     payload: {showAnimation: true},
-                //   })
-                // }, 900)
               }}
               fontFamily="chess"
               fontSize="30px"

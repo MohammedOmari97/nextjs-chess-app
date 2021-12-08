@@ -26,7 +26,6 @@ function DifficultyItem({difficulty, active}) {
 
   return (
     <Box
-      // style={{position: "relative"}}
       p={7}
       className={styles.difficultyItem}
       _hover={{bg: !active ? "#edf2f7" : undefined}}
@@ -69,7 +68,6 @@ function DifficultyItem({difficulty, active}) {
           <HStack
             position="absolute"
             top="0"
-            // left="0"
             left="44%"
             transform="translateX(-50%)"
             w="100%"

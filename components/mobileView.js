@@ -20,20 +20,43 @@ import {worker} from "../chessEngine/engineWorker"
 import {chess, resetBoard} from "../chessEngine/chess"
 import {useEffect, useRef} from "react"
 
-function MoveHistoryButton({move, ...props}) {
+function MoveHistoryButton({move, orientation, ...props}) {
   const dispatch = useDispatch()
-  const buttonRef = useRef()
+  const buttonPortraitRef = useRef()
+  const buttonLandscapeRef = useRef()
   const {stepsInHistory} = useSelector((state) => state.game)
 
   useEffect(() => {
-    if (stepsInHistory === move.historyStep) {
-      buttonRef.current.scrollIntoView({inline: "nearest"})
+    if (buttonPortraitRef.current && stepsInHistory === move.historyStep) {
+      buttonPortraitRef.current.scrollIntoView({inline: "nearest"})
+    }
+
+    if (buttonLandscapeRef.current && stepsInHistory === move.historyStep) {
+      buttonLandscapeRef.current.scrollIntoView({block: "nearest"})
     }
   }, [stepsInHistory])
 
+  if (orientation === "landscape") {
+    return (
+      <Button
+        ref={buttonLandscapeRef}
+        w="46%"
+        variant={stepsInHistory === move.historyStep ? "solid" : "ghost"}
+        onClick={() => {
+          dispatch({
+            type: "go-to-move",
+            payload: {move: move.historyStep},
+          })
+        }}
+      >
+        {move.moveCode}
+      </Button>
+    )
+  }
+
   return (
     <Button
-      ref={buttonRef}
+      ref={buttonPortraitRef}
       onClick={() => {
         dispatch({
           type: "go-to-move",
@@ -42,6 +65,7 @@ function MoveHistoryButton({move, ...props}) {
       }}
       variant={stepsInHistory === move.historyStep ? "solid" : "ghost"}
       height="25px"
+      minWidth="auto"
       {...props}
     >
       {move.moveCode}
@@ -57,7 +81,9 @@ function GameMovesPortrait({isVisible}) {
   return (
     <Flex
       w="100%"
+      h="31px"
       overflowX="auto"
+      overflowY="hidden"
       display={isVisible ? "flex" : "none"}
       padding="3px"
       ref={movesListRef}
@@ -80,13 +106,10 @@ function GameMovesLandscape() {
       shadow="sm"
       border="1px solid #e3e3e355"
       borderRadius="md"
+      padding="3px"
     >
       {moves.map((move, i) => {
-        return (
-          <Button w="46%" variant="ghost" key={i}>
-            {move.moveCode}
-          </Button>
-        )
+        return <MoveHistoryButton key={i} move={move} orientation="landscape" />
       })}
     </Wrap>
   )
@@ -133,9 +156,7 @@ function MobileView() {
                 mb="none"
                 justify="space-between"
               >
-                {/* <Box h="50%"> */}
                 <GameMovesLandscape />
-                {/* </Box> */}
               </PlayersInfo>
             </VStack>
           ) : null}
@@ -157,7 +178,6 @@ function MobileView() {
                 <Button
                   w="100%"
                   onClick={() => {
-                    // dispatch({type: 'set-game-over', payload: {isGameOver: false, winner: null}})
                     resetBoard()
                     const playerToMove =
                       chess.turn() === computerColor[0] ? "computer" : "user"
@@ -170,7 +190,6 @@ function MobileView() {
                     })
                     dispatch({type: "reset-board"})
                     dispatch({type: "reset-score"})
-                    // worker.postMessage({message: "init", color: computerColor})
                   }}
                   fontFamily="chess"
                   fontSize="30px"

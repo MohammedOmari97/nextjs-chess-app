@@ -332,6 +332,7 @@ function gameReducer(state = game, action) {
   } else if (action.type === "set-game-over") {
     return produce(state, (draftState) => {
       draftState.isGameOver = action.payload.isGameOver
+      console.log(action.payload.winner)
 
       if (
         action.payload.type === "checkmate" ||

@@ -180,7 +180,6 @@ export function ChessBoard({style}) {
 
   useEffect(() => {
     initializeChessJS(fen)
-    // worker.postMessage({message: "init", color: computerColor, fen})
     const playerToMove = chess.turn() === computerColor[0] ? "computer" : "user"
     dispatch({
       type: "set-is-board-flipped",
@@ -210,7 +209,6 @@ export function ChessBoard({style}) {
     (e) => {
       const promotion = e.data.promotion?.promotedToString
       const engineMove = engine.moveToString(e.data.move)
-      // console.log(engineMove)
       const source = engineMove.substr(0, 2)
       const destination = engineMove.substr(2, 2)
       const piece = pieces.find((piece) => piece.square === source)
@@ -340,7 +338,6 @@ export function ChessBoard({style}) {
           key={`${currentPosition.sourceSquare}-${currentPosition.destinationSquare}`}
           path="straight"
           startAnchor="middle"
-          // startAnchor={{position: "middle", offset: {x: -20, y: -20}}}
           endAnchor="middle"
           zIndex={999}
           color="#FF454288"
@@ -451,7 +448,6 @@ function ChessBoardComponent() {
               spacing="50px"
               align="center"
               justify="center"
-              // direction={width < 980 ? "column" : "row"}
               direction={{
                 base: "column",
                 sm: "column",

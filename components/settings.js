@@ -123,14 +123,11 @@ function BoardPreview({boardTheme, piecesTheme}) {
 
 function Settings() {
   const {isOpen, onClose, onOpen} = useDisclosure()
-  const {
-    boardTheme: _boardTheme,
-    piecesTheme: _piecesTheme,
-    // isBoardFlipped: _isBoardFlipped,
-  } = useSelector((state) => state.appearance)
+  const {boardTheme: _boardTheme, piecesTheme: _piecesTheme} = useSelector(
+    (state) => state.appearance
+  )
   const [boardTheme, setBoardTheme] = useState(_boardTheme)
   const [piecesTheme, setPiecesTheme] = useState(_piecesTheme)
-  // const [isBoardFlipped, setIsBoardFlipped] = useState(_isBoardFlipped)
   const [isBoardFlipped, setIsBoardFlipped] = useState(false)
   const dispatch = useDispatch()
   const {showSettings} = useSelector((state) => state.settings)
@@ -161,7 +158,6 @@ function Settings() {
         onClose={() => {
           onClose()
           dispatch({type: "hide-settings"})
-          // }} size="xl" isOpen={isOpen} isCentered>
         }}
         size="xl"
         isOpen={showSettings}
@@ -222,11 +218,6 @@ function Settings() {
                   display="flex"
                   alignItems="center"
                   onChange={(e) => {
-                    // setIsBoardFlipped(e.target.checked)
-                    // dispatch({
-                    //   type: "set-is-board-flipped",
-                    //   payload: {isBoardFlipped: e.target.checked},
-                    // })
                     setIsBoardFlipped(!isBoardFlipped)
                     dispatch({
                       type: "flip-board",

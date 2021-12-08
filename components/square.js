@@ -21,8 +21,6 @@ import styles from "./styles/promotionPopup.module.scss"
 import PromotionPopup from "./promotionPopup"
 import {useMediaQuery} from "@chakra-ui/media-query"
 
-// engine.setBoard(engine.START_FEN)
-
 function Square({name, children}) {
   const hoveredSquare = useSelector((state) => state.hoveredSquare)
   const selectedSquare = useSelector((state) => state.selectedSquare)
@@ -101,12 +99,6 @@ function Square({name, children}) {
         }`,
         zIndex: promotionSquare === name ? 200 : 100,
         position: "relative",
-        // background:
-        //   selectedSquare.square === name
-        //     ? "rgba(255, 255, 255, 0.1)"
-        //     : source === name || destination === name
-        //     ? "#3182CE55"
-        //     : undefined,
       }}
       id={name}
       onContextMenu={(e) => e.preventDefault()}
@@ -144,9 +136,9 @@ function Square({name, children}) {
           transform="translate(-50%, -50%)"
           top="50%"
           left="50%"
-          background="rgba(0, 0, 0, 0.5)"
-          width="20px"
-          height="20px"
+          background="rgba(0, 0, 0, 0.3)"
+          width={{base: "10px", sm: "10px", md: "20px", lg: "20px"}}
+          height={{base: "10px", sm: "10px", md: "20px", lg: "20px"}}
           borderRadius="50%"
         />
       ) : null}
@@ -166,104 +158,7 @@ function Square({name, children}) {
       ) : null}
       {showPromotionPopup ? (
         <PromotionPopup sourceSquare={sourceSquare} squareName={name} />
-      ) : // <Box
-      //   position="absolute"
-      //   zIndex={500}
-      //   top={0}
-      //   left={0}
-      //   w="100%"
-      //   background="white"
-      //   p="5px"
-      //   borderRadius="5px"
-      // >
-      //   <VStack>
-      //     <button
-      //       // w="100%"
-      //       className={styles.promotionButton}
-      //       onClick={() => {
-      //         const sourceSquare = selectedSquare
-      //           ? selectedSquare.square
-      //           : sourceSquare.current.square
-      //         const piece = selectedSquare
-      //           ? selectedSquare.piece
-      //           : sourceSquare.current
-      //         move({from: sourceSquare, to: name}, piece, {
-      //           promotion: "q",
-      //         })
-      //       }}
-      //     >
-      //       <Image
-      //         src={`/pieces/${piecesTheme}-queen-${userColor}.png`}
-      //         alt="queen piece"
-      //         layout="fill"
-      //       />
-      //     </button>
-      //     <button
-      //       className={styles.promotionButton}
-      //       onClick={() => {
-      //         const sourceSquare = selectedSquare
-      //           ? selectedSquare.square
-      //           : sourceSquare.current.square
-      //         const piece = selectedSquare
-      //           ? selectedSquare.piece
-      //           : sourceSquare.current
-      //         move({from: sourceSquare, to: name}, piece, {
-      //           promotion: "r",
-      //         })
-      //       }}
-      //       w="100%"
-      //     >
-      //       <Image
-      //         src={`/pieces/${piecesTheme}-rook-${userColor}.png`}
-      //         alt="queen piece"
-      //         layout="fill"
-      //       />
-      //     </button>
-      //     <button
-      //       className={styles.promotionButton}
-      //       onClick={() => {
-      //         const sourceSquare = selectedSquare
-      //           ? selectedSquare.square
-      //           : sourceSquare.current.square
-      //         const piece = selectedSquare
-      //           ? selectedSquare.piece
-      //           : sourceSquare.current
-      //         move({from: sourceSquare, to: name}, piece, {
-      //           promotion: "b",
-      //         })
-      //       }}
-      //       w="100%"
-      //     >
-      //       <Image
-      //         src={`/pieces/${piecesTheme}-bishop-${userColor}.png`}
-      //         alt="queen piece"
-      //         layout="fill"
-      //       />
-      //     </button>
-      //     <button
-      //       className={styles.promotionButton}
-      //       onClick={() => {
-      //         const sourceSquare = selectedSquare
-      //           ? selectedSquare.square
-      //           : sourceSquare.current.square
-      //         const piece = selectedSquare
-      //           ? selectedSquare.piece
-      //           : sourceSquare.current
-      //         move({from: sourceSquare, to: name}, piece, {
-      //           promotion: "k",
-      //         })
-      //       }}
-      //       w="100%"
-      //     >
-      //       <Image
-      //         src={`/pieces/${piecesTheme}-knight-${userColor}.png`}
-      //         alt="queen piece"
-      //         layout="fill"
-      //       />
-      //     </button>
-      //   </VStack>
-      // </Box>
-      null}
+      ) : null}
     </Box>
   )
 }

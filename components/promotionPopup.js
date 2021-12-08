@@ -9,7 +9,6 @@ function PromotionPopup({squareName, sourceSquare}) {
   const selectedSquare = useSelector((state) => state.selectedSquare)
   const {promotionSquare} = useSelector((state) => state.game)
   const {move} = useMove()
-  // const isLandscape = window.innerHeight < window.innerWidth
   const {piecesTheme} = useSelector((state) => state.appearance)
   const {userColor} = useSelector((state) => state.sides)
   const [isLandscape] = useMediaQuery("(orientation: landscape)")
@@ -34,7 +33,6 @@ function PromotionPopup({squareName, sourceSquare}) {
         >
           <VStack>
             <button
-              // w="100%"
               className={styles.promotionButton}
               onClick={() => {
                 const sourceSquare = selectedSquare

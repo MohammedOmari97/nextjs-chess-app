@@ -25,6 +25,7 @@ function GameOverModal() {
   const MotionBox = motion(Box)
   const {score, takebacks} = useSelector((state) => state.scores)
   const containerRef = useRef()
+  console.log(winner)
 
   let gameOverMessage
   if (winner === "user") {
@@ -45,10 +46,6 @@ function GameOverModal() {
     <Modal
       isOpen={showModal}
       onClose={() => {
-        // dispatch({
-        //   type: "set-game-over",
-        //   payload: {isGameOver: false, winner: null},
-        // })
         setShowModal(false)
         dispatch({type: "reset-score"})
       }}

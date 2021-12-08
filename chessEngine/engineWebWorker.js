@@ -12,9 +12,7 @@ let difficulty = difficulties.beginner
 addEventListener("message", (event) => {
   if (event.data.message === "init") {
     difficulty = difficulties[event.data.difficulty]
-    // engine.setBoard(engine.START_FEN)
     engine.setBoard(event.data.fen)
-    // if (event.data.color === "white") {
     if (event.data.playerToMove === "computer") {
       let bestMove = engine.search(difficulty)
       engine.makeMove(bestMove)
@@ -29,8 +27,6 @@ addEventListener("message", (event) => {
         : event.data.payload.move
     )
     engine.makeMove(userMove)
-    // let bestMove = engine.searchTime(100)
-    // let bestMove = engine.search(1)
     let bestMove = engine.search(difficulty)
     engine.makeMove(bestMove)
     postMessage({
