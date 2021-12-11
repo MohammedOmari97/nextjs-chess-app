@@ -81,6 +81,7 @@ function GameOverModal() {
                     height={100}
                     className={styles.playerImage}
                     layout="fixed"
+                    priority={true}
                   />
                 </Box>
                 <Heading
@@ -113,6 +114,7 @@ function GameOverModal() {
                     height={100}
                     className={styles.playerImage}
                     layout="fixed"
+                    priority={true}
                   />
                 </Box>
                 <Heading
@@ -213,54 +215,6 @@ function GameOverModal() {
                       ></MotionBox>
                     )
                   })}
-                {/* <MotionBox
-                  fontFamily="chess"
-                  fontSize="80px"
-                  lineHeight="10px"
-                  w="50px"
-                  h="50px"
-                  textShadow="0 0.3rem 0 #8e752a"
-                  color="#f3c536"
-                  _before={{content: '"\\1F32"', width: "100%", height: "100%"}}
-                  opacity={0}
-                  scale={0.3}
-                  variants={{
-                    visible: {scale: 1, opacity: 1},
-                    hidden: {scale: 0.3, opacity: 0},
-                  }}
-                ></MotionBox>
-                <MotionBox
-                  fontFamily="chess"
-                  fontSize="80px"
-                  lineHeight="10px"
-                  w="50px"
-                  h="50px"
-                  textShadow="0 0.3rem 0 #8e752a"
-                  color="#f3c536"
-                  _before={{content: '"\\1F32"', width: "100%", height: "100%"}}
-                  opacity={0}
-                  scale={0.3}
-                  variants={{
-                    visible: {scale: 1, opacity: 1},
-                    hidden: {scale: 0.3, opacity: 0},
-                  }}
-                ></MotionBox>
-                <MotionBox
-                  fontFamily="chess"
-                  fontSize="80px"
-                  lineHeight="10px"
-                  w="50px"
-                  h="50px"
-                  textShadow="0 0.3rem 0 #8e752a"
-                  color="#f3c536"
-                  _before={{content: '"\\1F32"', width: "100%", height: "100%"}}
-                  opacity={0}
-                  scale={0.3}
-                  variants={{
-                    visible: {scale: 1, opacity: 1},
-                    hidden: {scale: 0.3, opacity: 0},
-                  }}
-                ></MotionBox> */}
               </MotionHStack>
             </Box>
           </VStack>
