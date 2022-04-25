@@ -18,7 +18,7 @@ import {
   FormLabel,
   Switch,
 } from "@chakra-ui/react"
-import {useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {useWindowSize} from "../utils/useWindowSize"
 
@@ -123,12 +123,17 @@ function BoardPreview({boardTheme, piecesTheme}) {
 
 function Settings() {
   const {isOpen, onClose, onOpen} = useDisclosure()
-  const {boardTheme: _boardTheme, piecesTheme: _piecesTheme} = useSelector(
-    (state) => state.appearance
-  )
+  const {
+    boardTheme: _boardTheme,
+    piecesTheme: _piecesTheme,
+    isBoardFlipped: _isBoardFlipped,
+  } = useSelector((state) => state.appearance)
+  const boardThemeRef = useRef(_boardTheme)
+  const piecesThemeRef = useRef(_piecesTheme)
   const [boardTheme, setBoardTheme] = useState(_boardTheme)
   const [piecesTheme, setPiecesTheme] = useState(_piecesTheme)
   const [isBoardFlipped, setIsBoardFlipped] = useState(false)
+  let isBoardFlippedRef = useRef(isBoardFlipped)
   const dispatch = useDispatch()
   const {showSettings} = useSelector((state) => state.settings)
   const {width, height} = useWindowSize()
@@ -157,6 +162,8 @@ function Settings() {
       <Modal
         onClose={() => {
           onClose()
+          setBoardTheme(boardThemeRef)
+          setPiecesTheme(piecesThemeRef)
           dispatch({type: "hide-settings"})
         }}
         size="xl"
@@ -219,9 +226,6 @@ function Settings() {
                   alignItems="center"
                   onChange={(e) => {
                     setIsBoardFlipped(!isBoardFlipped)
-                    dispatch({
-                      type: "flip-board",
-                    })
                   }}
                 >
                   <FormLabel htmlFor="flip-board" mb="0">
@@ -237,6 +241,9 @@ function Settings() {
               <Button
                 onClick={() => {
                   onClose()
+                  setIsBoardFlipped(isBoardFlippedRef.current)
+                  setBoardTheme(boardThemeRef.current)
+                  setPiecesTheme(piecesThemeRef.current)
                   dispatch({type: "hide-settings"})
                 }}
               >
@@ -245,14 +252,14 @@ function Settings() {
               <Button
                 colorScheme="blue"
                 onClick={() => {
-                  console.log(boardTheme)
-                  console.log(piecesTheme)
+                  if (isBoardFlipped !== isBoardFlippedRef.current) {
+                    dispatch({type: "flip-board"})
+                  }
+                  isBoardFlippedRef.current = isBoardFlipped
+                  boardThemeRef.current = boardTheme
+                  piecesThemeRef.current = piecesTheme
                   dispatch({type: "set-board-theme", payload: {boardTheme}})
                   dispatch({type: "set-pieces-theme", payload: {piecesTheme}})
-                  dispatch({
-                    type: "set-board-orientation",
-                    payload: {isBoardFlipped},
-                  })
                   onClose()
                   dispatch({type: "hide-settings"})
                 }}

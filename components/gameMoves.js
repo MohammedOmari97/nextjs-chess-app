@@ -139,43 +139,45 @@ function GameMoves() {
         </Button>
       </HStack>
       <HStack p="0 10px 10px 10px" width="100%" justify="center">
-        <Tooltip label="Takeback">
-          <Button
-            onClick={() => {
-              dispatch({type: "takeback", payload: {userColor}})
-              dispatch({type: "register-takeback"})
-              if (moves.length < 2) {
-                return
-              } else {
-                const isFullMove = moves.length % 2 === 0
-                if (userColor === "white") {
-                  if (isFullMove) {
-                    chess.undo()
-                    chess.undo()
-                  } else {
-                    chess.undo()
-                  }
+        {!isGameOver && (
+          <Tooltip label="Takeback">
+            <Button
+              onClick={() => {
+                dispatch({type: "takeback", payload: {userColor}})
+                dispatch({type: "register-takeback"})
+                if (moves.length < 2) {
+                  return
                 } else {
-                  if (isFullMove) {
-                    chess.undo()
+                  const isFullMove = moves.length % 2 === 0
+                  if (userColor === "white") {
+                    if (isFullMove) {
+                      chess.undo()
+                      chess.undo()
+                    } else {
+                      chess.undo()
+                    }
                   } else {
-                    chess.undo()
-                    chess.undo()
+                    if (isFullMove) {
+                      chess.undo()
+                    } else {
+                      chess.undo()
+                      chess.undo()
+                    }
                   }
+                  worker.postMessage({
+                    message: "takeback",
+                    payload: {movesLength: moves.length, userColor},
+                  })
                 }
-                worker.postMessage({
-                  message: "takeback",
-                  payload: {movesLength: moves.length, userColor},
-                })
-              }
-            }}
-            fontSize="30px"
-            fontFamily="chess"
-            width={{base: "25%", sm: "25%", md: "25%", lg: "100%"}}
-          >
-            <span style={{marginBottom: "5px"}}>C</span>
-          </Button>
-        </Tooltip>
+              }}
+              fontSize="30px"
+              fontFamily="chess"
+              width={{base: "25%", sm: "25%", md: "25%", lg: "100%"}}
+            >
+              <span style={{marginBottom: "5px"}}>C</span>
+            </Button>
+          </Tooltip>
+        )}
         {isGameOver ? (
           <Tooltip label="New Game">
             <Button

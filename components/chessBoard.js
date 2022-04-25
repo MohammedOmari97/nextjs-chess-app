@@ -183,7 +183,8 @@ export function ChessBoard({style}) {
     const playerToMove = chess.turn() === computerColor[0] ? "computer" : "user"
     dispatch({
       type: "set-is-board-flipped",
-      payload: {isBoardFlipped: playerToMove === "computer"},
+      // payload: {isBoardFlipped: playerToMove === "computer"},
+      payload: {isFlipped: playerToMove === "computer"},
     })
 
     const listener = window.addEventListener("keydown", (e) => {

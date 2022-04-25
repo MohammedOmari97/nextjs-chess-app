@@ -38,7 +38,11 @@ function SelectColor() {
             onChange={(e) => {
               e.preventDefault()
               dispatch({type: "set-user-color", payload: {color: "black"}})
-              dispatch({type: "set-is-flipped", payload: {isFlipped: true}})
+              // dispatch({type: "set-is-flipped", payload: {isFlipped: true}})
+              dispatch({
+                type: "set-is-board-flipped",
+                payload: {isBoardFlipped: true},
+              })
             }}
             name="user color"
           />
@@ -78,7 +82,11 @@ function SelectColor() {
             onChange={(e) => {
               e.preventDefault()
               dispatch({type: "set-user-color", payload: {color: "white"}})
-              dispatch({type: "set-is-flipped", payload: {isFlipped: false}})
+              // dispatch({type: "set-is-flipped", payload: {isFlipped: false}})
+              dispatch({
+                type: "set-is-board-flipped",
+                payload: {isBoardFlipped: false},
+              })
             }}
             name="user color"
           />
