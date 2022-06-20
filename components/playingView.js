@@ -23,6 +23,7 @@ import {chess} from "../chessEngine/chess"
 function PlayingView() {
   const {difficulty} = useSelector((state) => state.difficulty)
   const {capturedPieces} = useSelector((state) => state.game.currentPosition)
+  const {isGameOver} = useSelector((state) => state.game)
   const {userColor, computerColor} = useSelector((state) => state.sides)
   const {piecesTheme, isBoardFlipped} = useSelector((state) => state.appearance)
   const {width, height} = useWindowSize()
@@ -143,24 +144,25 @@ function PlayingView() {
                         className={styles.playerImage}
                         layout="fixed"
                       />
-                      {isComputerTurn && (
-                        <Box
-                          position="absolute"
-                          top="50%"
-                          transform="translate(-50%, -50%)"
-                          left="-30px"
-                        >
-                          <Oval
-                            ariaLabel="loading-indicator"
-                            height={18}
-                            width={18}
-                            strokeWidth={5}
-                            strokeWidthSecondary={1}
-                            color="#333"
-                            secondaryColor="white"
-                          />
-                        </Box>
-                      )}
+                      {isComputerTurn &&
+                        !isGameOver(
+                          <Box
+                            position="absolute"
+                            top="50%"
+                            transform="translate(-50%, -50%)"
+                            left="-30px"
+                          >
+                            <Oval
+                              ariaLabel="loading-indicator"
+                              height={18}
+                              width={18}
+                              strokeWidth={5}
+                              strokeWidthSecondary={1}
+                              color="#333"
+                              secondaryColor="white"
+                            />
+                          </Box>
+                        )}
                       <VStack spacing="0px" marginLeft="10px">
                         <Heading as="h2" fontSize="26px" opacity={0.85}>
                           {bots[difficulty]}
