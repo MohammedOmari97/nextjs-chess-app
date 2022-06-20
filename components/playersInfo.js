@@ -129,25 +129,24 @@ function PlayersInfo({children, isVisible, ...rest}) {
                 className={styles.playerImage}
                 layout="fill"
               />
-              {isComputerTurn &&
-                !isGameOver(
-                  <Box
-                    position="absolute"
-                    top="50%"
-                    transform="translate(-40%, -60%)"
-                    left="-14px"
-                  >
-                    <Oval
-                      ariaLabel="loading-indicator"
-                      height={11}
-                      width={11}
-                      strokeWidth={5}
-                      strokeWidthSecondary={1}
-                      color="#333"
-                      secondaryColor="white"
-                    />
-                  </Box>
-                )}
+              {isComputerTurn && !isGameOver && (
+                <Box
+                  position="absolute"
+                  top="50%"
+                  transform="translate(-40%, -60%)"
+                  left="-14px"
+                >
+                  <Oval
+                    ariaLabel="loading-indicator"
+                    height={11}
+                    width={11}
+                    strokeWidth={5}
+                    strokeWidthSecondary={1}
+                    color="#333"
+                    secondaryColor="white"
+                  />
+                </Box>
+              )}
             </Box>
             <VStack spacing="0px" marginLeft="10px">
               <Heading

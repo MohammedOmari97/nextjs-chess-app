@@ -181,7 +181,7 @@ function GameOverModal() {
                 animate={showModal ? "visible" : "hidden"}
                 variants={{
                   visible: {
-                    transition: {staggerChildren: 0.4, delayChildren: 0.5},
+                    transition: {staggerChildren: 0.4, delayChildren: 0.2},
                   },
                   hidden: {
                     transition: {staggerChildren: 0.4},

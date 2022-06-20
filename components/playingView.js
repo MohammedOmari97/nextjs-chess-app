@@ -144,25 +144,24 @@ function PlayingView() {
                         className={styles.playerImage}
                         layout="fixed"
                       />
-                      {isComputerTurn &&
-                        !isGameOver(
-                          <Box
-                            position="absolute"
-                            top="50%"
-                            transform="translate(-50%, -50%)"
-                            left="-30px"
-                          >
-                            <Oval
-                              ariaLabel="loading-indicator"
-                              height={18}
-                              width={18}
-                              strokeWidth={5}
-                              strokeWidthSecondary={1}
-                              color="#333"
-                              secondaryColor="white"
-                            />
-                          </Box>
-                        )}
+                      {isComputerTurn && !isGameOver && (
+                        <Box
+                          position="absolute"
+                          top="50%"
+                          transform="translate(-50%, -50%)"
+                          left="-30px"
+                        >
+                          <Oval
+                            ariaLabel="loading-indicator"
+                            height={18}
+                            width={18}
+                            strokeWidth={5}
+                            strokeWidthSecondary={1}
+                            color="#333"
+                            secondaryColor="white"
+                          />
+                        </Box>
+                      )}
                       <VStack spacing="0px" marginLeft="10px">
                         <Heading as="h2" fontSize="26px" opacity={0.85}>
                           {bots[difficulty]}
@@ -237,7 +236,7 @@ function PlayingView() {
                         className={styles.playerImage}
                         layout="fixed"
                       />
-                      {isComputerTurn && (
+                      {isComputerTurn && !isGameOver && (
                         <Box
                           position="absolute"
                           top="50%"
