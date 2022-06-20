@@ -9,6 +9,8 @@ body {
     Droid Sans, Helvetica Neue, sans-serif;
 }
 
+/* .15s cubic-bezier(.4,0,.2,1); */
+
 *,
 *::before,
 *::after {

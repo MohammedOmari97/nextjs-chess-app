@@ -5,7 +5,7 @@ import {store, persistor} from "../store/store"
 import "../styles/globals.css"
 import {CSSReset} from "@chakra-ui/css-reset"
 import {PersistGate} from "redux-persist/lib/integration/react"
-import {Component} from "react"
+import {Component, useState, useLayoutEffect} from "react"
 
 const breakpoints = createBreakpoints({
   sm: "530px",

@@ -37,6 +37,7 @@ import {useWindowSize} from "../utils/useWindowSize"
 import {getCapturedPiecesImages} from "../utils/getCapturedPiecesImages"
 import PromotionPopup from "./promotionPopup"
 import {useMediaQuery} from "@chakra-ui/media-query"
+import {Oval} from "react-loader-spinner"
 
 const headShape = {
   svgElem: (

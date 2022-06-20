@@ -36,7 +36,7 @@ const store = createStore(
         appearanceReducer
       ),
       scores: persistReducer({key: "scores", storage}, scoresReducer),
-      arrows: arrowsReducer,
+      arrows: persistReducer({key: "arrows", storage}, arrowsReducer),
       settings: settingsReducer,
     })
   )
